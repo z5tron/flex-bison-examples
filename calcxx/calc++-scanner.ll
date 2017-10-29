@@ -10,6 +10,7 @@
 // 2.5.31 through 2.5.33): it generates code that does
 // not conform to C89.  See Debian bug 333231
 // <http://bugs.debian.org/cgi-bin/bugreport.cgi?bug=333231>.
+// no need for 2.6.0
 # undef yywrap
 # define yywrap() 1
 
@@ -31,6 +32,9 @@ blank [ \t]
 
 %{
   // Code run each time a pattern is matched.
+  // Executed each time a rule
+  // matches, after yytext and yyleng were set, but before the action is
+  // triggered.
   # define YY_USER_ACTION  loc.columns (yyleng);
 %}
 
